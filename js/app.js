@@ -11,6 +11,14 @@ const coffees = [
 	{ name: 'Coffee 10', image: 'img/coffee10.webp', description: 'Una mezcla de notas tostadas y un toque reconfortante, pensada para disfrutar a cualquier hora.' }
 ];
 
+if ('serviceWorker' in navigator && window.isSecureContext) {
+	window.addEventListener('load', () => {
+		navigator.serviceWorker.register('./serviceworker.js').catch((error) => {
+			console.error('No se pudo registrar el service worker:', error);
+		});
+	});
+}
+
 const coffeeList = document.querySelector('#coffee-list');
 
 if (coffeeList) {
